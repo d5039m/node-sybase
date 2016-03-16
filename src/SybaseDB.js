@@ -120,9 +120,10 @@ Sybase.prototype.onSQLError = function(data)
 {
 	var error = new Error(data);
 	for (var k in this.currentMessages){
-    	if (this.currentMessages.hasOwnProperty(k)) {
-    		this.currentMessages[k].callback(error);
-    	}
+    		if (this.currentMessages.hasOwnProperty(k)) {
+    			this.currentMessages[k].callback(error);
+    			delete this.currentMessages[k];
+    		}
 	}
 };
 
